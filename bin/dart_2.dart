@@ -1,3 +1,18 @@
+void main() {
+  String nome = "Laranja";
+  double peso = 100.2;
+  String cor = "Verde e Amarela";
+  String sabor = "Doce e cítrica";
+  int diasDesdeColheita = 40;
+  bool? isMadura;
+
+  if (diasDesdeColheita >= 30) {
+    isMadura = true;
+  } else {
+    isMadura = false;
+  }
+}
+
 bool funcEstaMadura(int dias) {
   if (dias >= 30) {
     return true;
@@ -6,36 +21,37 @@ bool funcEstaMadura(int dias) {
   }
 }
 
-mostrarMadura(String nome, {required int dias, String cor = 'Sem cor'}) {
+mostrarMadura(String nome, int dias, {required String cor}) {
   if (dias >= 30) {
-    print('A $nome está madura!');
+    print("A $nome está madura.");
   } else {
-    print('A $nome não está Madura!');
+    print("A $nome não está madura.");
   }
-  if (cor != null) {
-    print('A $nome é $cor');
-  }
+
+  print("A $nome é $cor.");
 }
 
-int? quantosDiasFaltam(int diasAposColher, int diasParaMadurar) {
-  if (diasParaMadurar <= diasAposColher) {
-    print('Afruta Já está madura!');
-  } else {
-    return diasParaMadurar - diasAposColher;
-  }
+int funcQuantosDiasMadura(int dias) {
+  int diasParaMadura = 30;
+  int quantosDiasFaltam = diasParaMadura - dias;
+  return quantosDiasFaltam;
 }
 
-void main() {
-  String nome = "Laranja";
-  double peso = 100.2;
-  String cor = "Verde e Amarela";
-  String sabor = "Doce e cítrica";
-  int diasDesdeColheita = 20;
-  bool isMadura = funcEstaMadura(diasDesdeColheita);
+class Fruta {
+  String nome;
+  double peso;
+  String cor;
+  String sabor;
+  int diasDesdeColheita;
+  bool? isMadura;
 
-  print(isMadura);
+  Fruta(this.nome, this.peso, this.cor, this.sabor, this.diasDesdeColheita,
+      {this.isMadura});
 
-  mostrarMadura('Uva', dias: 40, cor: 'Roxa');
-  print('Faltam dias para madurar? Se sim quantos?');
-  print(quantosDiasFaltam(diasDesdeColheita, 30));
+  void estaMadura(int diasParaMadura) {
+    isMadura = diasDesdeColheita >= diasParaMadura;
+    print('A sua $nome foi colhida a $diasDesdeColheita dias e precisa de'
+        ' $diasParaMadura dias para poder comer!'
+        'Ela está Madura? $isMadura');
+  }
 }
