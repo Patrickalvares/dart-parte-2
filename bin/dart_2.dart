@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 void main() {
   String nome = "Laranja";
   double peso = 100.2;
@@ -83,7 +85,7 @@ class Fruta extends Alimento {
   }
 }
 
-class Legumes extends Alimento {
+class Legumes extends Alimento implements Bolo {
   bool isPrecisaCozinhar;
 
   Legumes(String nome, double peso, String cor, this.isPrecisaCozinhar)
@@ -96,6 +98,13 @@ class Legumes extends Alimento {
       print('Nem precisa cozinhar');
     }
   }
+
+  @override
+  void separarIngredientes() {}
+  @override
+  Void assar() {}
+  @override
+  Void fazerMassa() {}
 }
 
 class Citricas extends Fruta {
@@ -119,4 +128,10 @@ class Nozes extends Fruta {
   Nozes(String nome, double peso, String cor, String sabor,
       int diasDesdeColheita, this.porcentagemOleoNatural)
       : super(nome, peso, cor, sabor, diasDesdeColheita);
+}
+
+abstract class Bolo {
+  void separarIngredientes();
+  void fazerMassa();
+  void assar();
 }
